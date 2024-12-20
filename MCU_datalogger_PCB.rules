@@ -1,0 +1,161 @@
+
+(rules PCB MCU_datalogger_PCB
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 1776)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.6)
+      (against_preferred_direction_trace_costs 3.3)
+    )
+    (layer_rule In1.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.6)
+    )
+    (layer_rule In2.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.7)
+    )
+    (layer_rule B.Cu
+      (active off)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.6)
+      (against_preferred_direction_trace_costs 3.3)
+    )
+  )
+  (rule
+    (width 250.0)
+    (clearance 200.0)
+    (clearance 125.0 (type smd_to_turn_gap))
+    (clearance 50.0 (type smd))
+    (clearance 200.0 (type "kicad_default"))
+    (clearance 200.0 (type Experimental))
+    (clearance 250.0 (type Power))
+  )
+  (padstack "Via[0-3]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle In1.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle In2.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (padstack "Via[0-3]_900:400_um"
+    (shape
+      (circle F.Cu 900.0 0.0 0.0)
+    )
+    (shape
+      (circle In1.Cu 900.0 0.0 0.0)
+    )
+    (shape
+      (circle In2.Cu 900.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 900.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-3]_800:400_um" "Via[0-3]_800:400_um" default
+  )
+  (via 
+    "Via[0-3]_900:400_um" "Via[0-3]_900:400_um" default
+  )
+  (via 
+    "Via[0-3]_800:400_um-kicad_default" "Via[0-3]_800:400_um" "kicad_default"
+  )
+  (via 
+    "Via[0-3]_900:400_um-kicad_default" "Via[0-3]_900:400_um" "kicad_default"
+  )
+  (via 
+    "Via[0-3]_800:400_um-Experimental" "Via[0-3]_800:400_um" Experimental
+  )
+  (via 
+    "Via[0-3]_900:400_um-Experimental" "Via[0-3]_900:400_um" Experimental
+  )
+  (via 
+    "Via[0-3]_800:400_um-Power" "Via[0-3]_800:400_um" Power
+  )
+  (via 
+    "Via[0-3]_900:400_um-Power" "Via[0-3]_900:400_um" Power
+  )
+  (via_rule
+    default "Via[0-3]_800:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-3]_800:400_um-kicad_default"
+  )
+  (via_rule
+    Experimental "Via[0-3]_800:400_um-Experimental"
+  )
+  (via_rule
+    Power "Via[0-3]_900:400_um-Power"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu In1.Cu In2.Cu)
+    )
+  )
+  (class "kicad_default"
+    GND "Net-(U3-PB6)" "Net-(U3-PB7)" "Net-(U3-AREF)" "Net-(D1-K)" /SCK "Net-(D2-K)" /SDA
+    /Rx /Tx /D6 /D7 /D2 /D3 /D5 /D4
+    /D8 /MISO /MOSI /RESET "Net-(U4-~{INTA})" "Net-(U4-SQW{slash}~INT)" "unconnected-(U3-PC3-Pad26)" "unconnected-(U3-PC2-Pad25)"
+    "unconnected-(U3-ADC7-Pad22)" "unconnected-(U3-PC0-Pad23)" "unconnected-(U3-PC1-Pad24)" "unconnected-(U3-ADC6-Pad19)" "unconnected-(U3-PB2-Pad14)" "unconnected-(U3-PB1-Pad13)" "unconnected-(U3-VCC-Pad6)" "Net-(U4-X1)"
+    "Net-(U4-X2)" /SCL
+    (clearance_class "kicad_default")
+    (via_rule "kicad_default")
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu In1.Cu In2.Cu)
+    )
+  )
+  (class Experimental
+    (clearance_class Experimental)
+    (via_rule Experimental)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu In1.Cu In2.Cu)
+    )
+  )
+  (class Power
+    /Vcc
+    (clearance_class Power)
+    (via_rule Power)
+    (rule
+      (width 350.0)
+    )
+    (circuit 
+      (use_layer F.Cu In1.Cu In2.Cu)
+    )
+  )
+)
